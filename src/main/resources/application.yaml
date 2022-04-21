@@ -1,0 +1,21 @@
+## 환경을 나눠서 구동하기 local , dev
+spring:
+  config:
+    activate:
+      on-profile: local
+get:
+  user:
+    config: false
+
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile : dev
+
+get:
+  user:
+    config: true
