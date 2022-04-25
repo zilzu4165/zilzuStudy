@@ -6,11 +6,7 @@ spring:
 get:
   user:
     config: false
-
-
-
 ---
-
 spring:
   config:
     activate:

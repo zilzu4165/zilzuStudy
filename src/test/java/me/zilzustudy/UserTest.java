@@ -13,21 +13,23 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class UserTest {
 
+
+    // https://gist.github.com/Toparvion/26e2baf3b3fb89fa2f957e78fde5ef53  참고하였음
     private final ApplicationContextRunner runner = new ApplicationContextRunner()
             .withInitializer(new ConditionEvaluationReportLoggingListener())
-            .withUserConfiguration(UserConfiguration.class)
-            .withUserConfiguration(ZilzuUserServiceImpl.class, UserServiceImpl.class);
+            .withUserConfiguration(UserConfiguration.class);
+//            .withUserConfiguration("zilzuUserServiceImpl", "userServiceImpl");
 
-    // 테스트 어렵누;;
+    // 문제있네이거
     @Test
     public void property() {
         runner
-                .withPropertyValues("get.zilzu.config=false")
+                .withPropertyValues("get.user.config=false")
                 .run(context -> assertAll(
-//                        () -> assertThat(context).hasSingleBean(UserServiceImpl.class),
-                        () -> assertThat(context).hasSingleBean(ZilzuUserServiceImpl.class)
+//                        () -> assertThat(context).hasSingleBean(UserServiceImpl.class)
+//                        () -> assertThat(context).hasSingleBean(ZilzuUserServiceImpl.class)
 //                        () -> assertThat(context).doesNotHaveBean(ZilzuUserServiceImpl.class)
-//                        () -> assertThat(context).doesNotHaveBean(UserServiceImpl.class)
+                        () -> assertThat(context).doesNotHaveBean("zilzuUserServiceImpl")
                 ));
     }
 }
