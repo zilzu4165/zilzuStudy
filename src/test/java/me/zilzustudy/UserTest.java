@@ -25,25 +25,42 @@ class UserTest {
         ));
     }
 
-    @Test
-    void user_config가_false이면_ZilzuUserServiceImpl_bean을_가지고_UserServiceImpl은_갖지_않는다() {
-        // given
-        ApplicationContextRunner sut = runnerWithUserConfig(false);
+    // https://gist.github.com/Toparvion/26e2baf3b3fb89fa2f957e78fde5ef53  참고하였음
+    private final ApplicationContextRunner runner = new ApplicationContextRunner()
+            .withUserConfiguration(UserConfiguration.class);
 
-        sut.run(context -> assertAll(
-                () -> assertThat(context).hasSingleBean(UserService.class),
-                () -> assertThat(context).hasSingleBean(ZilzuUserServiceImpl.class),
-                () -> assertThat(context).doesNotHaveBean(UserServiceImpl.class)
-        ));
+
+    // given
+
+    // when
+
+    // then
+
+    @Test
+    void config가_false이면_ZilzuUserServiceImple을_가져온다() {
+        configPropertyValueIs(false)
+                .run(context -> assertAll(
+                        () -> assertThat(context).hasSingleBean(ZilzuUserServiceImpl.class),
+                        () -> assertThat(context).doesNotHaveBean(UserServiceImpl.class)
+                ));
     }
 
-    private ApplicationContextRunner runnerWithUserConfig(Boolean configOn) {
-        ApplicationContextRunner runner = new ApplicationContextRunner()
-                .withUserConfiguration(UserConfiguration.class);
-        if (configOn) {
-            return runner.withPropertyValues("get.user.config=true");
+    @Test
+    void config가_true이면_UserServiceImple을가져온다() {
+        configPropertyValueIs(true)
+                .run(context -> assertAll(
+                        () -> assertThat(context).hasSingleBean(UserServiceImpl.class),
+                        () -> assertThat(context).doesNotHaveBean(ZilzuUserServiceImpl.class)
+                ));
+    }
+
+    public ApplicationContextRunner configPropertyValueIs(boolean t) {
+        if (t) {
+            return runner
+                    .withPropertyValues("get.user.config=true");
         } else {
-            return runner.withPropertyValues("get.user.config=false");
+            return runner
+                    .withPropertyValues("get.user.config=false");
         }
     }
 }
