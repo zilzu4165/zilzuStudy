@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BookTest {
 
-
     Trader pss = new Trader("성수", "Busan");
     Trader smh = new Trader("명하", "Seoul");
     Trader kyj = new Trader("영진", "Seoul");
@@ -124,6 +123,7 @@ public class BookTest {
                 .reduce(Integer::max);
         // reduce max
         System.out.println("reduceMaxValue = " + reduceMaxValue);
+        assertThat(maxValue).hasValue(2000);
     }
 
     @Test
@@ -140,7 +140,7 @@ public class BookTest {
                 .reduce(Integer::min);
         // reduce min
         System.out.println("reduceMinValue = " + reduceMinValue);
-        assertThat(reduceMinValue).isEqualTo(300);
+        assertThat(minValue).hasValue(300);
     }
 
     @Test
