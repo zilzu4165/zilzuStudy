@@ -22,13 +22,13 @@ public class LambdaTest {
     }
 
     @Test
-    void ddd() {
+    void 람다테스트() {
         List<String> elements = new ArrayList<>();
         elements.add("holy-water"); // 10
-        elements.add("bad-water"); // 9
+        elements.add("bad-water!!"); // 11
         elements.add("good-water"); // 10
         elements.add("good-news"); // 9
-        elements.add("good-news"); // 9
+        elements.add("goods-news"); // 9
 
         List<Integer> countElements = new ArrayList<>();
         for (String element : elements) {
@@ -36,22 +36,56 @@ public class LambdaTest {
         }
         System.out.println(countElements);
 
-        List<Integer> collect = elements.stream()
-                .filter((element) -> element.contains("good"))
-                .map(element -> element.length())
-                .distinct()
-                .sorted()
-                .collect(Collectors.toList());
+        String newsType = "holy";
 
-        System.out.println(collect);
+        if (newsType.equals("good")) {
+            notifyGoodNews(elements, "good");
+        }else if(newsType.equals("bad")){
+            notifyGoodNews(elements, "bad");
+        }else {
+            notifyGoodNews(elements, "holy");
+        }
 
 //        if (good) {
 //            notifyGoodNews();
 //        }
     }
 
-    private void notifyGoodNews() {
+    @Test
+    void myLambdaTest() {
 
+        List<String> cities = new ArrayList<>();
+        cities.add("busan");
+        cities.add("seoul");
+        cities.add("ulsan");
+        cities.add("newyork");
+        cities.add("daegu");
+        cities.add("chungju");
+
+        List<Integer> countCities = new ArrayList<>();
+        for (String city : cities) {
+            countCities.add(city.length());
+        }
+        System.out.println(countCities);
+
+        List<Integer> collect = cities.stream()
+                .map(city -> city.length())
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+
+        System.out.println(collect);
+    }
+
+    private void notifyGoodNews(List<String> elements, String newsType) {
+        List<Integer> collect = elements.stream()
+                .filter((element) -> element.contains(newsType))
+                .map(element -> element.length())
+//                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+
+        System.out.println(collect);
     }
 
     @Test

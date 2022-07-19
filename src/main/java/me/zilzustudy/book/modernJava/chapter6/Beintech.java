@@ -1,4 +1,4 @@
-package me.zilzustudy.modernJava.chapter6;
+package me.zilzustudy.book.modernJava.chapter6;
 
 public class Beintech {
     private String name;

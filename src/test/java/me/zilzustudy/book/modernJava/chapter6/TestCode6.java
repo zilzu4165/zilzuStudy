@@ -1,6 +1,5 @@
-package me.zilzustudy.modernJava.chapter6;
+package me.zilzustudy.book.modernJava.chapter6;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 

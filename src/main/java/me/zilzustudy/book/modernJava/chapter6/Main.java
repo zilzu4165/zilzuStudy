@@ -1,4 +1,4 @@
-package me.zilzustudy.modernJava.chapter6;
+package me.zilzustudy.book.modernJava.chapter6;
 
 import java.util.*;
 
@@ -35,7 +35,6 @@ public class Main {
         // 리듀싱
         reducingMax();
         reducingMaxBeintech(beintechList);
-        reducingJoin
 
     }
 

@@ -1,4 +1,4 @@
-package me.zilzustudy.modernJava.chapter5;
+package me.zilzustudy.book.modernJava.chapter5;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
