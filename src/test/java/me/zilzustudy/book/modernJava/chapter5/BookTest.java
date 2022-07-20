@@ -37,7 +37,8 @@ public class BookTest {
                 .filter(t -> t.getYear() == 2011)
                 .sorted(Comparator.comparing(Transaction::getValue))
                 .collect(Collectors.toList());
-        System.out.println("transaction2011 = " + transaction2011);
+
+        transaction2011.forEach(System.out::println);
         assertThat(transaction2011).filteredOn(t -> t.getYear() != 2011);
     }
 
@@ -45,8 +46,9 @@ public class BookTest {
     @DisplayName("거래자가 근무하는 모든 도시를 중복 없이 나열하시오.")
     void exam2() {
         List<String> cityList = transactions.stream()
-                .map(Transaction::getTrader)
-                .map(Trader::getCity)
+                .map(t -> t.getTrader().getCity())
+//                .map(Transaction::getTrader)
+//                .map(Trader::getCity)
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println("cityList = " + cityList);
@@ -85,6 +87,8 @@ public class BookTest {
                 .sorted()
                 .collect(Collectors.joining(","));
         System.out.println("joining 사용");
+        System.out.println("traderStr2 = " + traderStr2);
+        System.out.println("traderStr2 = " + traderStr2);
         System.out.println("traderStr2 = " + traderStr2);
     }
 

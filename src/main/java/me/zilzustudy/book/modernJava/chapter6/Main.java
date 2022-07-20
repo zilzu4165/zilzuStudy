@@ -22,15 +22,15 @@ public class Main {
         );
 
         // 그룹화
-        getPositionGroup(beintechList);
-        getFilterPositionGroup(beintechList);
-        getFiltersPositionGroup(beintechList);
-        countPositionGroup(beintechList);
-        maxByPositionGroup(beintechList);
+//        getPositionGroup(beintechList);
+//        getFilterPositionGroup(beintechList);
+//        getFiltersPositionGroup(beintechList);
+//        countPositionGroup(beintechList);
+//        maxByPositionGroup(beintechList);
 
         // 분할
-        partitioning(beintechList);
-        partitioning2(beintechList);
+//        partitioning(beintechList);
+//        partitioning2(beintechList);
 
         // 리듀싱
         reducingMax();
@@ -53,7 +53,7 @@ public class Main {
 //                .collect(groupingBy(Beintech::getPosition));
 
         Map<Beintech.Position, List<Beintech>> positionFilterGroup = beintechList.stream()
-                // groupingBy 메서드 오버로드
+//                 groupingBy 메서드 오버로드
                 .collect(groupingBy(Beintech::getPosition,
                         filtering(beintech -> beintech.getYears() >= 100,
                                 toList())));
@@ -73,7 +73,7 @@ public class Main {
                                     }
                                 }
                         )));
-        System.out.println(positionFilterGroup);
+//        positionFilterGroup.forEach(s -> System.out.println(s));
     }
 
     // counting -- 그룹별로 인원수
@@ -85,15 +85,15 @@ public class Main {
 
     // maxBy  -- position 그룹별로 제일 연차가 많은 사람
     private static void maxByPositionGroup(List<Beintech> beintechList) {
-//        Map<Beintech.Position, Optional<Beintech>> groups = beintechList.stream()
-//                .collect(groupingBy(Beintech::getPosition,
-//                        maxBy(Comparator.comparingInt(Beintech::getYears))));
+        Map<Beintech.Position, Optional<Beintech>> groups = beintechList.stream()
+                .collect(groupingBy(Beintech::getPosition,
+                        maxBy(Comparator.comparingInt(Beintech::getYears))));
 
         //Optional을 제거해주려면 collectingAndThen 사용
-        Map<Beintech.Position, Beintech> groups = beintechList.stream()
-                .collect(groupingBy(Beintech::getPosition,
-                        collectingAndThen(maxBy(comparingInt(Beintech::getYears)),
-                        Optional::get)));
+//        Map<Beintech.Position, Beintech> groups = beintechList.stream()
+//                .collect(groupingBy(Beintech::getPosition,
+//                        collectingAndThen(maxBy(comparingInt(Beintech::getYears)),
+//                        Optional::get)));
 
         System.out.println(groups);
     }

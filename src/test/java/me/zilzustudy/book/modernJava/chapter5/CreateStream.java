@@ -29,9 +29,11 @@ public class CreateStream {
     @Test
     @DisplayName("lotto 번호 만들기")
     void createLottoNumbers() {
-        Collection<Integer> lottoNumbers = Stream.generate(() -> new Random().nextInt(45) + 1)
-                .distinct()
-                .limit(6)
+        Collection<Integer> lottoNumbers =
+                Stream.generate(() -> new Random().nextInt(45) + 1)
+        //Stream.of(3,3,3,3,3,3)s
+        .distinct()
+                .limit(2)
                 .sorted()
                 .collect(Collectors.toList());
         System.out.println("lottoNumbers = " + lottoNumbers);
